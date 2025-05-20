@@ -5,18 +5,18 @@ import Loader from "../Loader/Loader";
 
 export default function MovieCast() {
   const [actors, setActors] = useState([]);
-  const { filmId } = useParams();
+  const { movieId } = useParams();
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     setIsLoading(true);
     setIsError(false);
-    fetchCast(filmId)
+    fetchCast(movieId)
       .then((data) => setActors(data.cast))
       .catch(() => setIsError(true))
       .finally(() => setIsLoading(false));
-  }, [filmId]);
+  }, [movieId]);
 
   return (
     <div>

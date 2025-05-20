@@ -16,7 +16,7 @@ import { fetchDetailsFilm } from "../../api";
 const MovieDetailsPage = () => {
   const location = useLocation();
   const backLinkRef = useRef(location.state?.from ?? "/movies");
-  const { filmId } = useParams();
+  const { movieId } = useParams();
   const [film, setFilm] = useState(null);
   const [isLoading, setLoading] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -24,15 +24,15 @@ const MovieDetailsPage = () => {
   useEffect(() => {
     setLoading(true);
     setIsError(false);
-    fetchDetailsFilm(filmId)
-      .then((film) => {
-        setFilm(film);
+    fetchDetailsFilm(movieId)
+      .then((movie) => {
+        setFilm(movie);
       })
       .catch((error) => {
         setIsError(true);
       })
       .finally(() => setLoading(false));
-  }, [filmId]);
+  }, [movieId]);
 
   return (
     <div className={mycss.box}>

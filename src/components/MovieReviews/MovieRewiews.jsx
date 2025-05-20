@@ -4,7 +4,7 @@ import { fetchReviews } from "../../api";
 import Loader from "../Loader/Loader";
 
 export default function MovieReviews() {
-  const { filmId } = useParams();
+  const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -13,11 +13,11 @@ export default function MovieReviews() {
   useEffect(() => {
     setIsLoading(true);
     setIsError(false);
-    fetchReviews(filmId)
+    fetchReviews(movieId)
       .then((data) => setReviews(data.results))
       .catch(() => setIsError(true))
       .finally(() => setIsLoading(false));
-  }, [filmId]);
+  }, [movieId]);
 
   const toggleExpand = (id) => {
     setExpandedIds((prev) =>
